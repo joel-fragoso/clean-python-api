@@ -16,4 +16,7 @@ class JwtAdapter(Encrypter, Decrypter):
         return encode(payload, self.__secret, "HS256")
 
     def decrypt(self, ciphertext: str) -> str:
-        return decode(ciphertext, self.__secret, ["HS256"])
+        test = decode(ciphertext, self.__secret, ["HS256"])
+        print(test)
+        exit()
+        return test

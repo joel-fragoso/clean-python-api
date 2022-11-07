@@ -8,7 +8,7 @@ class BcryptAdapter(Hasher, HashComparer):
         self.__salt = salt
 
     def hash(self, plaintext: str) -> str:
-        return hashpw(plaintext.encode("utf-8"), gensalt(self.__salt))
+        return hashpw(plaintext.encode("utf-8"), gensalt(self.__salt)).decode("utf-8")
 
     def compare(self, plaintext: str, digest: str) -> bool:
         return checkpw(plaintext.encode("utf-8"), digest.encode("utf-8"))

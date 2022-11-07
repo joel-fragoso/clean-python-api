@@ -1,6 +1,9 @@
+from uuid import uuid4
+
 from src.data.protocols.cryptography import Hasher
 from src.data.protocols.db.account import (
     AddAccountRepository,
+    AddAccountRepositoryParams,
     CheckAccountByEmailRepository,
 )
 from src.domain.usecases import AddAccount, AddAccountParams
@@ -23,6 +26,8 @@ class DbAddAccount(AddAccount):
         if not exists:
             hashed_password = self.__hasher.hash(account.password)
             is_valid = self.__add_account_repository.add(
-                {**account, "password": hashed_password}
+                AddAccountRepositoryParams(
+                    str(uuid4()), account.name, account.email, hashed_password
+                )
             )
         return is_valid

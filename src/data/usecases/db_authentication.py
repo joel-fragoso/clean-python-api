@@ -28,8 +28,6 @@ class DbAuthentication(Authentication):
     def auth(
         self, authentication_params: AuthenticationParams
     ) -> Optional[AuthenticationResult]:
-        print(authentication_params)
-        exit()
         account = self.__load_account_by_email_repository.load_by_email(
             authentication_params.email
         )

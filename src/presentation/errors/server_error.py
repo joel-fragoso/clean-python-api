@@ -1,5 +1,6 @@
-class ServerError(Exception):
-    def __init__(self, traceback: str) -> None:
-        super().__init__("Internal server error")
-        self.name = "ServerError"
-        self.traceback = traceback
+from .app_error import AppError
+
+
+class ServerError(AppError):
+    code = 500
+    description = "Internal server error"

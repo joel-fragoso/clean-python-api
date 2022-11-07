@@ -22,12 +22,12 @@ class SignInController(Controller):
             if error:
                 return bad_request(error)
             authentication_model = self.__authentication.auth(
-                AuthenticationParams(http_request.email, http_request.password)
+                AuthenticationParams(http_request["email"], http_request["password"])
             )
             print(authentication_model)
             exit()
             if not authentication_model:
                 return unauthorized()
             return ok(authentication_model)
-        except Exception as error:
-            return server_error(error)
+        except:
+            return server_error()

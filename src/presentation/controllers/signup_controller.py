@@ -35,7 +35,9 @@ class SignUpController(Controller):
             error = self.__validation.validate(http_request)
             if error:
                 return bad_request(error)
-            name, email, password = http_request
+            name = http_request["name"]
+            email = http_request["email"]
+            password = http_request["password"]
             is_valid = self.__add_account.add(AddAccountParams(name, email, password))
             if not is_valid:
                 return forbidden(EmailInUseError())

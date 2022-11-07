@@ -1,3 +1,3 @@
 from .add_account_factory import make_db_add_account
-from .db_account_factory import make_db_authentication
+from .db_authentication_factory import make_db_authentication
 from .load_account_by_token_factory import make_db_load_account_by_token

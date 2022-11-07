@@ -1,4 +1,3 @@
-from traceback import format_exc
 from typing import Any
 
 from src.presentation.errors import ServerError, UnauthorizedError
@@ -25,5 +24,5 @@ def forbidden(error: Exception) -> HttpResponse:
     return HttpResponse(403, error)
 
 
-def server_error(error: Exception) -> HttpResponse:
-    return HttpResponse(500, ServerError(format_exc()))
+def server_error() -> HttpResponse:
+    return HttpResponse(500, ServerError())
