@@ -1,3 +1,4 @@
+import typing as t
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
@@ -11,5 +12,7 @@ class LoadAccountByEmailRepositoryResult:
 
 class LoadAccountByEmailRepository(ABC):
     @abstractmethod
-    def load_by_email(self, email: str) -> LoadAccountByEmailRepositoryResult:
+    def load_by_email(
+        self, email: str
+    ) -> t.Optional[LoadAccountByEmailRepositoryResult]:
         pass

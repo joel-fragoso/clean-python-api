@@ -45,5 +45,5 @@ class SignUpController(Controller):
                 AuthenticationParams(email, password)
             )
             return ok(authentication_model)
-        except Exception as error:
-            return server_error(error)
+        except Exception:
+            return server_error()

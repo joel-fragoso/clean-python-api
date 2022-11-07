@@ -24,10 +24,8 @@ class SignInController(Controller):
             authentication_model = self.__authentication.auth(
                 AuthenticationParams(http_request["email"], http_request["password"])
             )
-            print(authentication_model)
-            exit()
             if not authentication_model:
                 return unauthorized()
             return ok(authentication_model)
-        except:
+        except Exception:
             return server_error()

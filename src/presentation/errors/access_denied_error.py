@@ -1,4 +1,6 @@
-class AccessDeniedError(Exception):
-    def __init__(self) -> None:
-        super().__init__("Access denied")
-        self.name = "AccessDeniedError"
+from .app_error import AppError
+
+
+class AccessDeniedError(AppError):
+    code = 403
+    description = "Access denied"

@@ -27,5 +27,5 @@ class AuthMiddleware(Middleware):
                 if account:
                     return ok({"account_id": account.id})
             return forbidden(AccessDeniedError())
-        except Exception as error:
-            return server_error(error)
+        except Exception:
+            return server_error()

@@ -1,4 +1,6 @@
-class EmailInUseError(Exception):
-    def __init__(self) -> None:
-        super().__init__("The received email is already in use")
-        self.name = "EmailInUseError"
+from .app_error import AppError
+
+
+class EmailInUseError(AppError):
+    code = 400
+    description = "The received email is already in use"

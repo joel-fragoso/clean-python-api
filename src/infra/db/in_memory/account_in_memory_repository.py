@@ -46,7 +46,9 @@ class AccountInMemoryRepository(
         self.__accounts.append(Account.from_dict(data.to_dict()))
         return True
 
-    def load_by_email(self, email: str) -> LoadAccountByEmailRepositoryResult | None:
+    def load_by_email(
+        self, email: str
+    ) -> t.Optional[LoadAccountByEmailRepositoryResult]:
         for account in self.__accounts:
             if email == account.email:
                 return LoadAccountByEmailRepositoryResult(
