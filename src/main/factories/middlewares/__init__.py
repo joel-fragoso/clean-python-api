@@ -1,0 +1,1 @@
+from .auth_middleware_factory import make_auth_middleware
