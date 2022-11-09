@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from typing import TypedDict
 
 from src.domain.usecases import (
     AddAccount,
@@ -11,8 +11,7 @@ from src.presentation.helpers import bad_request, forbidden, ok, server_error
 from src.presentation.protocols import Controller, HttpResponse, Validation
 
 
-@dataclass
-class SignUpControllerRequest:
+class SignUpControllerRequest(TypedDict):
     name: str
     email: str
     password: str
@@ -35,9 +34,9 @@ class SignUpController(Controller):
             error = self.__validation.validate(http_request)
             if error:
                 return bad_request(error)
-            name = http_request["name"]
-            email = http_request["email"]
-            password = http_request["password"]
+            name = http_request.get("name")
+            email = http_request.get("email")
+            password = http_request.get("password")
             is_valid = self.__add_account.add(AddAccountParams(name, email, password))
             if not is_valid:
                 return forbidden(EmailInUseError())
