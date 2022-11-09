@@ -1,12 +1,11 @@
-from dataclasses import dataclass
+from typing import TypedDict
 
 from src.domain.usecases import Authentication, AuthenticationParams
 from src.presentation.helpers import bad_request, ok, server_error, unauthorized
 from src.presentation.protocols import Controller, HttpResponse, Validation
 
 
-@dataclass
-class SignInControllerRequest:
+class SignInControllerRequest(TypedDict):
     email: str
     password: str
 
@@ -22,7 +21,9 @@ class SignInController(Controller):
             if error:
                 return bad_request(error)
             authentication_model = self.__authentication.auth(
-                AuthenticationParams(http_request["email"], http_request["password"])
+                AuthenticationParams(
+                    http_request.get("email"), http_request.get("password")
+                )
             )
             if not authentication_model:
                 return unauthorized()
